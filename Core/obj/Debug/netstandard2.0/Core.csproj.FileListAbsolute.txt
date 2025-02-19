@@ -1,0 +1,17 @@
+C:\sample-project-main\sample-project-main\SampleProject\Core\bin\Debug\netstandard2.0\Core.deps.json
+C:\sample-project-main\sample-project-main\SampleProject\Core\bin\Debug\netstandard2.0\Core.dll
+C:\sample-project-main\sample-project-main\SampleProject\Core\bin\Debug\netstandard2.0\Core.pdb
+C:\sample-project-main\sample-project-main\SampleProject\Core\bin\Debug\netstandard2.0\BusinessEntities.dll
+C:\sample-project-main\sample-project-main\SampleProject\Core\bin\Debug\netstandard2.0\Common.dll
+C:\sample-project-main\sample-project-main\SampleProject\Core\bin\Debug\netstandard2.0\Data.dll
+C:\sample-project-main\sample-project-main\SampleProject\Core\bin\Debug\netstandard2.0\BusinessEntities.pdb
+C:\sample-project-main\sample-project-main\SampleProject\Core\bin\Debug\netstandard2.0\Data.pdb
+C:\sample-project-main\sample-project-main\SampleProject\Core\bin\Debug\netstandard2.0\Common.pdb
+C:\sample-project-main\sample-project-main\SampleProject\Core\obj\Debug\netstandard2.0\Core.csproj.AssemblyReference.cache
+C:\sample-project-main\sample-project-main\SampleProject\Core\obj\Debug\netstandard2.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\sample-project-main\sample-project-main\SampleProject\Core\obj\Debug\netstandard2.0\Core.AssemblyInfoInputs.cache
+C:\sample-project-main\sample-project-main\SampleProject\Core\obj\Debug\netstandard2.0\Core.AssemblyInfo.cs
+C:\sample-project-main\sample-project-main\SampleProject\Core\obj\Debug\netstandard2.0\Core.csproj.CoreCompileInputs.cache
+C:\sample-project-main\sample-project-main\SampleProject\Core\obj\Debug\netstandard2.0\Core.csproj.Up2Date
+C:\sample-project-main\sample-project-main\SampleProject\Core\obj\Debug\netstandard2.0\Core.dll
+C:\sample-project-main\sample-project-main\SampleProject\Core\obj\Debug\netstandard2.0\Core.pdb
