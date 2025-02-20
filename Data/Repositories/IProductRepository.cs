@@ -12,5 +12,6 @@ namespace Data.Repositories
 		Task DeleteAllProduct();
 		Task<List<Products>> GetAllProduct();
 		Task<Products> GetProductById(string id);
+		Task<Products> GetProduct(Products product);
 	}
 }

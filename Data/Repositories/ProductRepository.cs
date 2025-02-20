@@ -64,7 +64,26 @@ namespace Data.Repositories
 			var product = _products.FirstOrDefault(p => p.ProductId == id);
 			return await Task.FromResult(product);
 		}
-		
 
+		public async Task<Products> GetProduct(Products product)
+		{
+			if (!string.IsNullOrEmpty(product.ProductName) && !string.IsNullOrEmpty(product.ProductCode))
+			{
+				var productToSearch = _products.FirstOrDefault(p => p.ProductName == product.ProductName && p.ProductCode == product.ProductCode);
+				return await Task.FromResult(productToSearch);
+			}
+			else if (!string.IsNullOrEmpty(product.ProductName))
+			{
+				var productToSearch = _products.FirstOrDefault(p => p.ProductName == product.ProductName);
+				return await Task.FromResult(productToSearch);
+			}
+			else 
+			{
+				var productToSearch = _products.FirstOrDefault(p => p.ProductCode == product.ProductCode);
+				return await Task.FromResult(productToSearch);
+
+			}
+			
+		}		
 	}
 }
