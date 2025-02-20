@@ -1,3 +1,4 @@
+
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -9,15 +10,15 @@ using Raven.Client;
 
 namespace Data.Repositories
 {
-    [AutoRegister]
-    public class ProductRepository :  IProductRepository
-    {	
+	[AutoRegister]
+	public class ProductRepository : IProductRepository
+	{
 		private static List<Products> _products = new List<Products>();
 
-		public ProductRepository() 
-        {
-        
-        }
+		public ProductRepository()
+		{
+
+		}
 
 		public async Task AddProduct(Products product)
 		{
@@ -77,13 +78,13 @@ namespace Data.Repositories
 				var productToSearch = _products.FirstOrDefault(p => p.ProductName == product.ProductName);
 				return await Task.FromResult(productToSearch);
 			}
-			else 
+			else
 			{
 				var productToSearch = _products.FirstOrDefault(p => p.ProductCode == product.ProductCode);
 				return await Task.FromResult(productToSearch);
 
 			}
-			
-		}		
+
+		}
 	}
 }

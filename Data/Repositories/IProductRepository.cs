@@ -4,8 +4,9 @@ using BusinessEntities;
 
 namespace Data.Repositories
 {
-    public interface IProductRepository 
-    {
+	public interface IProductRepository
+
+	{
 		Task AddProduct(Products product);
 		Task UpdateProduct(Products product);
 		Task DeleteProductbyId(string id);
@@ -13,5 +14,6 @@ namespace Data.Repositories
 		Task<List<Products>> GetAllProduct();
 		Task<Products> GetProductById(string id);
 		Task<Products> GetProduct(Products product);
+
 	}
 }
