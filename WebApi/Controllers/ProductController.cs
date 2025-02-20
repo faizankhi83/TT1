@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +12,19 @@ using WebApi.Models.Product;
 
 namespace WebApi.Controllers
 {
-    [RoutePrefix("products")]
-    public class ProductController : BaseApiController
-    {
+	[RoutePrefix("products")]
+	public class ProductController : BaseApiController
+	{
 		IProductRepository productRepository = new ProductRepository();
-		//private static List<Products> products = new List<Products>();
-
-		//Notes: Created Service same as existing service , however is not using as per test requirments
 		public ProductController()
-        {
+		{
 
 		}
 
 		[Route("{productId:guid}/create")]
-        [HttpPost]
-        public HttpResponseMessage CreateProduct(Guid productId, [FromBody] ProductModel model)
-        {			
+		[HttpPost]
+		public HttpResponseMessage CreateProduct(Guid productId, [FromBody] ProductModel model)
+		{
 			Products product = new Products();
 			product.ProductId = productId.ToString();
 			product.ProductDesc = model.ProductDec;
@@ -35,12 +33,12 @@ namespace WebApi.Controllers
 			productRepository.AddProduct(product);
 
 			return Found(new ProductData(product));
-        }
+		}
 
-        [Route("{productId:guid}/update")]
-        [HttpPost]
-        public HttpResponseMessage UpdateProduct(Guid productId, [FromBody] ProductModel model)
-        {			
+		[Route("{productId:guid}/update")]
+		[HttpPost]
+		public HttpResponseMessage UpdateProduct(Guid productId, [FromBody] ProductModel model)
+		{
 			Products product = new Products();
 			product.ProductId = productId.ToString();
 			product.ProductDesc = model.ProductDec;
@@ -51,13 +49,13 @@ namespace WebApi.Controllers
 
 		}
 
-        [Route("{productId:guid}/deletebyid")]
-        [HttpDelete]
-        public HttpResponseMessage DeleteProduct(Guid productId)
-        {
+		[Route("{productId:guid}/deletebyid")]
+		[HttpDelete]
+		public HttpResponseMessage DeleteProduct(Guid productId)
+		{
 			productRepository.DeleteProductbyId(productId.ToString());
 			return Found();
-        }
+		}
 
 		[Route("clear")]
 		[HttpDelete]
@@ -68,10 +66,10 @@ namespace WebApi.Controllers
 		}
 
 		[Route("{productId:guid}/getproductbyid")]
-        [HttpGet]
-        public HttpResponseMessage GetProductbyId(Guid productId)
-        {
-			var product= productRepository.GetProductById(productId.ToString());
+		[HttpGet]
+		public HttpResponseMessage GetProductbyId(Guid productId)
+		{
+			var product = productRepository.GetProductById(productId.ToString());
 			return Found(product);
 		}
 
@@ -89,14 +87,14 @@ namespace WebApi.Controllers
 
 
 		[Route("list")]
-        [HttpGet]
-        public HttpResponseMessage GetProducts()
-        {
+		[HttpGet]
+		public HttpResponseMessage GetProducts()
+		{
 			var product = productRepository.GetAllProduct();
 			return Found(product);
 		}
 
-        
 
-    }
+
+	}
 }

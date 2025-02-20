@@ -4,15 +4,17 @@ using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using BusinessEntities;
+using Data.Repositories;
 using WebApi.Models.Order;
-
+using WebApi.Models.Product;
 
 namespace WebApi.Controllers
 {
     [RoutePrefix("orders")]
     public class OrdersController : BaseApiController
     {
-		private static List<Orders> orderlist = new List<Orders>();
+		IOrderRepository orderRepository = new OrderRepository();
+
 		public OrdersController()
         {
 			
@@ -27,24 +29,22 @@ namespace WebApi.Controllers
 			order.CustomerName = model.CustomerName;
 			order.OrderDate=model.OrderDate;
 			order.ProductId = model.ProductId;
-			orderlist.Add(order);
+			orderRepository.AddOrder(order);
 			return Found(new OrdersData(order));
-        }
+
+		}
 
         [Route("{orderId:guid}/update")]
         [HttpPost]
         public HttpResponseMessage UpdateOrder(Guid orderId, [FromBody] OrderModel model)
         {
-			var orderToUpdate = orderlist.FirstOrDefault(p => p.OrderId == orderId.ToString());
-			if (orderToUpdate != null)
-			{
-				// Update properties
-				orderToUpdate.CustomerName = model.CustomerName;
-				orderToUpdate.ProductId = model.ProductId;
-				orderToUpdate.OrderDate = model.OrderDate;
-			}
-
-			return Found(new OrdersData(orderToUpdate));
+			Orders order = new Orders();
+			order.OrderId = orderId.ToString();
+			order.CustomerName = model.CustomerName;
+			order.OrderDate = model.OrderDate;
+			order.ProductId = model.ProductId;
+			orderRepository.UpdateOrder(order);
+			return Found(new OrdersData(order));
 
 		}
 
@@ -52,33 +52,36 @@ namespace WebApi.Controllers
         [HttpDelete]
         public HttpResponseMessage DeleteOrder(Guid orderId)
         {
-			var orderToDelete = orderlist.FirstOrDefault(p => p.OrderId == orderId.ToString());
-			orderlist.Remove(orderToDelete);
+			orderRepository.DeleteOrderbyId(orderId.ToString());
 			return Found();
-        }
-
-        [Route("{orderId:guid}/getorderbyid")]
-        [HttpGet]
-        public HttpResponseMessage GetOrderbyId(Guid orderId)
-        {
-			var order = orderlist.FirstOrDefault(p => p.OrderId == orderId.ToString());
-			return Found(order);
-		}
-
-		[Route("list")]
-		[HttpGet]
-		public HttpResponseMessage GetOrders()
-		{
-			return Found(orderlist.ToList());
 		}
 
 		[Route("clear")]
 		[HttpDelete]
 		public HttpResponseMessage DeleteAllOrders()
 		{
-			orderlist.Clear();
+			orderRepository.DeleteAllOrder();
 			return Found();
 		}
+
+		[Route("{orderId:guid}/getorderbyid")]
+        [HttpGet]
+        public HttpResponseMessage GetOrderbyId(Guid orderId)
+        {
+			var order = orderRepository.GetOrderById(orderId.ToString());
+			return Found(order);
+
+		}
+
+		[Route("list")]
+		[HttpGet]
+		public HttpResponseMessage GetOrders()
+		{
+			var order = orderRepository.GetAllOrder();
+			return Found(order);
+		}
+
+		
 
 	}
 }
