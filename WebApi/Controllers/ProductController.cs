@@ -79,28 +79,12 @@ namespace WebApi.Controllers
 		[HttpGet]
 		public HttpResponseMessage GetProducts([FromBody] ProductModel model)
 		{
-			//if (!string.IsNullOrEmpty(model.ProductName) && !string.IsNullOrEmpty(model.ProductCode))
-			//{
-			//	var productToSearch = products.FirstOrDefault(p => p.ProductName == model.ProductName && p.ProductCode == model.ProductCode);
-			//	if (productToSearch != null)
-			//		return Found(new ProductData(productToSearch));
-			//}
-			//else if (!string.IsNullOrEmpty(model.ProductName))
-			//{
-			//	var productToSearch = products.FirstOrDefault(p => p.ProductName == model.ProductName);
-			//	if (productToSearch != null)
-			//		return Found(new ProductData(productToSearch));
-			//}
-			//else if (!string.IsNullOrEmpty(model.ProductCode))
-			//{
-			//	var productToSearch = products.FirstOrDefault(p => p.ProductCode == model.ProductCode);
-			//	if (productToSearch != null)
-			//		return Found(new ProductData(productToSearch));
-				
-			//}			
-			
-		   return Found();
-			
+			Products product = new Products();
+			product.ProductName = model.ProductName;
+			product.ProductCode = model.ProductCode;
+			var products = productRepository.GetProduct(product);
+			return Found(products);
+
 		}
 
 
